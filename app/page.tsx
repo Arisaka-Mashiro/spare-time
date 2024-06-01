@@ -28,16 +28,19 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-between p-24 ">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
         {isMarkerClick &&
-          <Card className={`z-10 absolute left-[${cardOffset.x}px] top-[${cardOffset.y}px]`}>
+          <Card 
+            className="z-10 absolute w-[300px]" 
+            style={{ left: `${cardOffset.x}px`, top: `${cardOffset.y}px` }}
+          >
             <CardHeader>
-              <CardTitle>Card Title</CardTitle>
-              <CardDescription>Card Description</CardDescription>
+              <CardTitle className="text-lg">명륜진사갈비 서울사당점</CardTitle>
+              <CardDescription className="text-xs">테스트 설명 테스트 설명 테스트 설명 테스트 설명 테스트 설명</CardDescription>
             </CardHeader>
             <CardContent>
-              <p>Card Content</p>
+              <img src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20200212_225%2F158145954086477wLo_JPEG%2FaAZ9b7UIWzP-TBTpFNfdIAs8.jpg"></img>
             </CardContent>
             <CardFooter>
-              <p>Card Footer</p>
+              <p className="text-xs">서울 동작구 사당로23길 6</p>
             </CardFooter>
           </Card>
         }
@@ -48,10 +51,10 @@ export default function Home() {
           }}
         >
           <NaverMap
-            defaultCenter={new navermaps.LatLng(37.3595704, 127.105399)}
+            defaultCenter={new navermaps.LatLng(37.4843309, 126.9772744)}
             defaultZoom={15}
           >
-            <Marker position={new navermaps.LatLng(37.3595704, 127.105399)} onClick={handleMarkerClick} />
+            <Marker position={new navermaps.LatLng(37.4843309, 126.9772744)} onClick={handleMarkerClick} />
           </NaverMap>
         </Container>
       </div>
