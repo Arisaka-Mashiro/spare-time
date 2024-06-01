@@ -1,7 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+/* 안쓰는 global css 삭제 240601 */
+/*
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -31,3 +32,4 @@ body {
     text-wrap: balance;
   }
 }
+*/
