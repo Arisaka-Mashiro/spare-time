@@ -25,10 +25,10 @@ export default function Home() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
+    <main className="flex min-h-screen flex-col items-center justify-between p-4 sm:p-8 md:p-12">
+      <div className="z-10 w-full max-w-xl items-center justify-between font-mono text-sm flex flex-col">
         {isMarkerClick &&
-          <Card className={`z-10 absolute left-[${cardOffset.x}px] top-[${cardOffset.y}px]`}>
+          <Card className="z-10 absolute left-0 top-0 transform -translate-x-1/2 -translate-y-1/2" style={{ left: `${cardOffset.x}px`, top: `${cardOffset.y}px` }}>
             <CardHeader>
               <CardTitle>Card Title</CardTitle>
               <CardDescription>Card Description</CardDescription>
@@ -42,10 +42,7 @@ export default function Home() {
           </Card>
         }
         <Container
-          style={{
-            width: '100%',
-            height: '600px',
-          }}
+          className="w-full h-80 sm:h-96 md:h-112"
         >
           <NaverMap
             defaultCenter={new navermaps.LatLng(37.3595704, 127.105399)}
