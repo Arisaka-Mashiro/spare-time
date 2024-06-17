@@ -1,7 +1,35 @@
 import Link from 'next/link';
 import { supabase } from '../supabaseClient';
 
-const MyPage = ({ userInfo, owners, profile }) => {
+const MyPage = async () => {
+  // Fetch userInfo
+  const userInfoResponse = await fetch('http://localhost:3000/api/mypage', {
+    cache: 'no-store',
+  });
+  const userInfo = await userInfoResponse.json();
+
+  // Fetch owners
+  const ownersResponse = await fetch('http://localhost:3000/api/owners', {
+    cache: 'no-store',
+  });
+  const owners = await ownersResponse.json();
+
+  // Fetch profile
+  const { data: profile, error } = await supabase
+    .from('owner')
+    .select('id, name, mobile, profile')
+    .eq('id', 'JsPJaoCYFlH_QvNhu-wFGIvgLOuWbLb78vRt1YuK6mk')
+    .single();
+
+  if (error) {
+    console.error('Error fetching profile:', error);
+    return (
+      <div>
+        <h1>Error fetching profile</h1>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <h1 className="text-3xl font-bold mb-6">My Page</h1>
@@ -41,39 +69,3 @@ const MyPage = ({ userInfo, owners, profile }) => {
 };
 
 export default MyPage;
-
-export async function getServerSideProps() {
-  // Fetch userInfo
-  const userInfoResponse = await fetch('http://localhost:3000/api/mypage');
-  const userInfo = await userInfoResponse.json();
-
-  // Fetch owners
-  const ownersResponse = await fetch('http://localhost:3000/api/owners');
-  const owners = await ownersResponse.json();
-
-  // Fetch profile
-  const { data: profile, error } = await supabase
-    .from('owner')
-    .select('id, name, mobile, profile')
-    .eq('id', 'JsPJaoCYFlH_QvNhu-wFGIvgLOuWbLb78vRt1YuK6mk')
-    .single();
-
-  if (error) {
-    console.error('Error fetching profile:', error);
-    return {
-      props: {
-        userInfo: null,
-        owners: [],
-        profile: null,
-      },
-    };
-  }
-
-  return {
-    props: {
-      userInfo,
-      owners,
-      profile,
-    },
-  };
-}

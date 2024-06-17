@@ -2,7 +2,7 @@
 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useSession } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 
 export default function Component() {
   const { data: session } = useSession({ required: true });
@@ -14,10 +14,18 @@ export default function Component() {
         { session && 
           <div className="space-y-2 text-center">
             <h1 className="text-3xl font-bold">마이페이지</h1>
-            <Label>닉네임</Label>
+            <Label>체험단 닉네임</Label>
             <Input defaultValue={session?.user?.name} />
-            <Label>이메일</Label>
+            <Label>체험단 이메일</Label>
             <Input defaultValue={session?.user?.email} />
+            <Label>체험단 프로필</Label>
+            <Input defaultValue={session?.user?.email} />
+            <button 
+              onClick={() => signOut()} 
+              className="mt-4 w-full py-2 bg-red-500 text-white font-semibold rounded-md"
+            >
+              로그아웃
+            </button>
           </div>
         }
       </div>
