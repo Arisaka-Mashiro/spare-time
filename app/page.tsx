@@ -18,20 +18,16 @@ export default function Home() {
 
   const handleMarkerClick = (e: any) => {
     const { clientX, clientY } = e.domEvent;
-    console.log(e);
 
     setCardOffset({ x: clientX, y: clientY });
     setIsMarkerClick(!isMarkerClick);
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24 ">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
+    <main className="flex min-h-screen flex-col items-center justify-between p-4">
+      <div className="z-10 w-full max-w-2xl font-mono text-sm">
         {isMarkerClick &&
-          <Card 
-            className="z-10 absolute w-[300px]" 
-            style={{ left: `${cardOffset.x}px`, top: `${cardOffset.y}px` }}
-          >
+          <Card className="z-10 absolute" style={{ left: `${cardOffset.x}px`, top: `${cardOffset.y}px` }}>
             <CardHeader>
               <CardTitle className="text-lg">명륜진사갈비 서울사당점</CardTitle>
               <CardDescription className="text-xs">테스트 설명 테스트 설명 테스트 설명 테스트 설명 테스트 설명</CardDescription>
